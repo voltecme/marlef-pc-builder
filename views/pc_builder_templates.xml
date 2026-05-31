@@ -11,35 +11,115 @@
                                     <!-- Step Navigation -->
                                     <ul class="nav nav-pills mb-4" id="pills-tab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="step-motherboard-tab" data-toggle="pill" href="#step-motherboard">1. Motherboard</a>
+                                            <a class="nav-link active" id="step-motherboard-tab" data-toggle="pill" href="#step-motherboard" role="tab" aria-controls="step-motherboard" aria-selected="true">1. Motherboard</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link disabled" id="step-cpu-tab" data-toggle="pill" href="#step-cpu">2. CPU</a>
+                                            <a class="nav-link disabled" id="step-cpu-tab" data-toggle="pill" href="#step-cpu" role="tab" aria-controls="step-cpu" aria-selected="false">2. CPU</a>
                                         </li>
-                                        <!-- Add more steps dynamically -->
+                                        <li class="nav-item">
+                                            <a class="nav-link disabled" id="step-ram-tab" data-toggle="pill" href="#step-ram" role="tab" aria-controls="step-ram" aria-selected="false">3. RAM</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link disabled" id="step-storage-tab" data-toggle="pill" href="#step-storage" role="tab" aria-controls="step-storage" aria-selected="false">4. Storage</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link disabled" id="step-gpu-tab" data-toggle="pill" href="#step-gpu" role="tab" aria-controls="step-gpu" aria-selected="false">5. GPU</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link disabled" id="step-case-tab" data-toggle="pill" href="#step-case" role="tab" aria-controls="step-case" aria-selected="false">6. Case</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link disabled" id="step-psu-tab" data-toggle="pill" href="#step-psu" role="tab" aria-controls="step-psu" aria-selected="false">7. PSU</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link disabled" id="step-cooler-tab" data-toggle="pill" href="#step-cooler" role="tab" aria-controls="step-cooler" aria-selected="false">8. CPU Cooler</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link disabled" id="step-fan-tab" data-toggle="pill" href="#step-fan" role="tab" aria-controls="step-fan" aria-selected="false">9. Case Fan</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link disabled" id="step-controller-tab" data-toggle="pill" href="#step-controller" role="tab" aria-controls="step-controller" aria-selected="false">10. Fan Controller</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link disabled" id="step-cable-tab" data-toggle="pill" href="#step-cable" role="tab" aria-controls="step-cable" aria-selected="false">11. Extra Cable</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link disabled" id="step-assembly-tab" data-toggle="pill" href="#step-assembly" role="tab" aria-controls="step-assembly" aria-selected="false">12. Assembly</a>
+                                        </li>
                                     </ul>
                                     
                                     <div class="tab-content" id="pills-tabContent">
-                                        <div class="tab-pane fade show active" id="step-motherboard" role="tabpanel">
+                                        <div class="tab-pane fade show active" id="step-motherboard" role="tabpanel" aria-labelledby="step-motherboard-tab">
                                             <div class="row" id="motherboard-list">
                                                 <t t-foreach="motherboards" t-as="mb">
                                                     <div class="col-md-4 mb-3">
-                                                        <div class="card bg-dark border-secondary h-100 component-card" t-att-data-id="mb.id" t-att-data-socket="mb.socket_type" t-att-data-ram="mb.ram_type">
+                                                        <div class="card bg-dark border-secondary h-100 component-card" data-id="mb.id" data-socket="mb.socket_type" data-ram="mb.ram_type" data-type="motherboard">
                                                             <img t-att-src="website.image_url(mb, 'image_1024')" class="card-img-top" t-att-alt="mb.name"/>
                                                             <div class="card-body">
                                                                 <h5 class="card-title text-white"><t t-esc="mb.name"/></h5>
                                                                 <p class="card-text text-muted">Socket: <t t-esc="mb.socket_type"/></p>
+                                                                <p class="card-text text-muted">RAM Type: <t t-esc="mb.ram_type"/></p>
                                                                 <p class="card-text text-danger fw-bold"><t t-esc="mb.list_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/></p>
-                                                                <button class="btn btn-primary select-component" t-att-data-id="mb.id">Select</button>
+                                                                <button class="btn btn-primary select-component" data-id="mb.id">Select</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </t>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="step-cpu" role="tabpanel">
+                                        <div class="tab-pane fade" id="step-cpu" role="tabpanel" aria-labelledby="step-cpu-tab">
                                             <div class="row" id="cpu-list">
                                                 <!-- CPUs will be loaded here via JS -->
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="step-ram" role="tabpanel" aria-labelledby="step-ram-tab">
+                                            <div class="row" id="ram-list">
+                                                <!-- RAM will be loaded here via JS -->
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="step-storage" role="tabpanel" aria-labelledby="step-storage-tab">
+                                            <div class="row" id="storage-list">
+                                                <!-- Storage will be loaded here via JS -->
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="step-gpu" role="tabpanel" aria-labelledby="step-gpu-tab">
+                                            <div class="row" id="gpu-list">
+                                                <!-- GPU will be loaded here via JS -->
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="step-case" role="tabpanel" aria-labelledby="step-case-tab">
+                                            <div class="row" id="case-list">
+                                                <!-- Case will be loaded here via JS -->
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="step-psu" role="tabpanel" aria-labelledby="step-psu-tab">
+                                            <div class="row" id="psu-list">
+                                                <!-- PSU will be loaded here via JS -->
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="step-cooler" role="tabpanel" aria-labelledby="step-cooler-tab">
+                                            <div class="row" id="cooler-list">
+                                                <!-- CPU Cooler will be loaded here via JS -->
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="step-fan" role="tabpanel" aria-labelledby="step-fan-tab">
+                                            <div class="row" id="fan-list">
+                                                <!-- Case Fan will be loaded here via JS -->
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="step-controller" role="tabpanel" aria-labelledby="step-controller-tab">
+                                            <div class="row" id="controller-list">
+                                                <!-- Fan Controller will be loaded here via JS -->
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="step-cable" role="tabpanel" aria-labelledby="step-cable-tab">
+                                            <div class="row" id="cable-list">
+                                                <!-- Extra Cable will be loaded here via JS -->
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="step-assembly" role="tabpanel" aria-labelledby="step-assembly-tab">
+                                            <div class="row" id="assembly-list">
+                                                <!-- Assembly will be loaded here via JS -->
                                             </div>
                                         </div>
                                     </div>
@@ -52,9 +132,7 @@
                                     </div>
                                     <div class="card-body">
                                         <ul id="build-summary-list" class="list-unstyled">
-                                            <li><strong>Motherboard:</strong> <span id="summary-motherboard">Not Selected</span></li>
-                                            <li><strong>CPU:</strong> <span id="summary-cpu">Not Selected</span></li>
-                                            <!-- Add more summary items -->
+                                            <!-- Summary items will be loaded here via JS -->
                                         </ul>
                                         <hr class="border-secondary"/>
                                         <div class="d-flex justify-content-between align-items-center">
@@ -62,6 +140,18 @@
                                             <h5 id="total-price" class="text-danger">$0.00</h5>
                                         </div>
                                         <button id="add-to-cart-btn" class="btn btn-success btn-block mt-3" disabled="disabled">Add Build to Cart</button>
+                                    </div>
+                                </div>
+                                <div class="card bg-dark border-info mt-4">
+                                    <div class="card-header bg-info text-white">
+                                        <h4 class="mb-0">3D Visualization</h4>
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <div id="pc-3d-viewer" style="width: 100%; height: 300px; background-color: #000; border-radius: 5px;">
+                                            <!-- 3D model will be rendered here -->
+                                            <p class="text-muted mt-5">3D visualization coming soon...</p>
+                                        </div>
+                                        <button id="generate-3d-btn" class="btn btn-info btn-block mt-3" disabled="disabled">Generate 3D Model</button>
                                     </div>
                                 </div>
                             </div>

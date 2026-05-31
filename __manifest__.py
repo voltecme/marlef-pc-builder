@@ -23,12 +23,14 @@
         'views/pc_builder_views.xml',
         'views/pc_builder_menus.xml',
         'views/res_config_settings_views.xml',
+        'views/dashboard_templates.xml',
         'data/pc_builder_data.xml',
     ],
     'assets': {
         'web.assets_frontend': [
             'marlef_pc_builder/static/src/scss/pc_builder.scss',
             'marlef_pc_builder/static/src/js/pc_builder.js',
+            'marlef_pc_builder/static/src/js/dashboard.js',
         ],
     },
     'installable': True,

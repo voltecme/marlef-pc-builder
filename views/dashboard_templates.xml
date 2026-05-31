@@ -1,0 +1,166 @@
+<odoo>
+    <template id="dashboard_page" name="PC Builder Dashboard">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_pc_builder_dashboard pt-4 pb-4" style="background-color: #121212; color: #ffffff;">
+                    <div class="container-fluid">
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h1 class="mb-4">Marlef PC Builder - Admin Dashboard</h1>
+                            </div>
+                        </div>
+
+                        <!-- Key Metrics Row -->
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <div class="card bg-dark border-primary">
+                                    <div class="card-body">
+                                        <h6 class="card-title text-muted">Total Builds</h6>
+                                        <h3 class="text-primary" id="total-builds"><t t-esc="dashboard_data['total_builds']"/></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-dark border-success">
+                                    <div class="card-body">
+                                        <h6 class="card-title text-muted">Builds Today</h6>
+                                        <h3 class="text-success" id="builds-today"><t t-esc="dashboard_data['builds_today']"/></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-dark border-danger">
+                                    <div class="card-body">
+                                        <h6 class="card-title text-muted">Total Revenue</h6>
+                                        <h3 class="text-danger" id="total-revenue">$<t t-esc="'{:,.2f}'.format(dashboard_data['total_revenue'])"/></h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card bg-dark border-warning">
+                                    <div class="card-body">
+                                        <h6 class="card-title text-muted">Compatibility Issues</h6>
+                                        <h3 class="text-warning" id="compatibility-issues"><t t-esc="len(dashboard_data['compatibility_issues'])"/></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Popular Components -->
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="card bg-dark border-secondary">
+                                    <div class="card-header bg-secondary text-white">
+                                        <h5 class="mb-0">Popular Components</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush bg-dark">
+                                            <t t-foreach="dashboard_data['popular_components']" t-as="comp">
+                                                <li class="list-group-item bg-dark text-white d-flex justify-content-between">
+                                                    <span><t t-esc="comp['name']"/></span>
+                                                    <span class="badge badge-primary"><t t-esc="comp['count']"/></span>
+                                                </li>
+                                            </t>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Stock Status -->
+                            <div class="col-md-6">
+                                <div class="card bg-dark border-secondary">
+                                    <div class="card-header bg-secondary text-white">
+                                        <h5 class="mb-0">Component Stock Status</h5>
+                                    </div>
+                                    <div class="card-body" style="max-height: 400px; overflow-y: auto;">
+                                        <table class="table table-dark table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Component</th>
+                                                    <th>Stock</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="dashboard_data['component_stock_status']" t-as="stock">
+                                                    <tr>
+                                                        <td><t t-esc="stock['component']"/></td>
+                                                        <td><t t-esc="stock['qty_available']"/></td>
+                                                        <td>
+                                                            <span t-attf-class="badge badge-{'success' if stock['status'] == 'In Stock' else 'danger'}">
+                                                                <t t-esc="stock['status']"/>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Builds -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="card bg-dark border-secondary">
+                                    <div class="card-header bg-secondary text-white">
+                                        <h5 class="mb-0">Recent Builds</h5>
+                                    </div>
+                                    <div class="card-body" style="max-height: 500px; overflow-y: auto;">
+                                        <table class="table table-dark table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Build Name</th>
+                                                    <th>User</th>
+                                                    <th>Total Price</th>
+                                                    <th>Created</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="dashboard_data['recent_builds']" t-as="build">
+                                                    <tr>
+                                                        <td><t t-esc="build['name']"/></td>
+                                                        <td><t t-esc="build['user']"/></td>
+                                                        <td class="text-danger fw-bold">$<t t-esc="'{:.2f}'.format(build['total_price'])"/></td>
+                                                        <td><t t-esc="build['create_date'].strftime('%Y-%m-%d %H:%M')"/></td>
+                                                        <td>
+                                                            <a href="#" class="btn btn-sm btn-info view-build" t-att-data-id="build['id']">View</a>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Compatibility Issues -->
+                        <t t-if="len(dashboard_data['compatibility_issues']) > 0">
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <div class="card bg-dark border-danger">
+                                        <div class="card-header bg-danger text-white">
+                                            <h5 class="mb-0">Compatibility Issues</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="list-group list-group-flush bg-dark">
+                                                <t t-foreach="dashboard_data['compatibility_issues']" t-as="issue">
+                                                    <li class="list-group-item bg-dark text-warning">
+                                                        <strong>Build <t t-esc="issue['build_id']"/>:</strong> <t t-esc="issue['issue']"/>
+                                                    </li>
+                                                </t>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

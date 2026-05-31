@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pc_build_user,pc.build.user,model_pc_build,base.group_user,1,1,1,1
+access_pc_build_manager,pc.build.manager,model_pc_build,base.group_system,1,1,1,1

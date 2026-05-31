@@ -1,0 +1,74 @@
+<odoo>
+    <template id="pc_builder_page" name="PC Builder">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_pc_builder pt-4 pb-4" style="background-color: #121212; color: #ffffff;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <h1 class="mb-4">Marlef x PC Builder</h1>
+                                <div id="pc-builder-steps">
+                                    <!-- Step Navigation -->
+                                    <ul class="nav nav-pills mb-4" id="pills-tab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="step-motherboard-tab" data-toggle="pill" href="#step-motherboard">1. Motherboard</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link disabled" id="step-cpu-tab" data-toggle="pill" href="#step-cpu">2. CPU</a>
+                                        </li>
+                                        <!-- Add more steps dynamically -->
+                                    </ul>
+                                    
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div class="tab-pane fade show active" id="step-motherboard" role="tabpanel">
+                                            <div class="row" id="motherboard-list">
+                                                <t t-foreach="motherboards" t-as="mb">
+                                                    <div class="col-md-4 mb-3">
+                                                        <div class="card bg-dark border-secondary h-100 component-card" t-att-data-id="mb.id" t-att-data-socket="mb.socket_type" t-att-data-ram="mb.ram_type">
+                                                            <img t-att-src="website.image_url(mb, 'image_1024')" class="card-img-top" t-att-alt="mb.name"/>
+                                                            <div class="card-body">
+                                                                <h5 class="card-title text-white"><t t-esc="mb.name"/></h5>
+                                                                <p class="card-text text-muted">Socket: <t t-esc="mb.socket_type"/></p>
+                                                                <p class="card-text text-danger fw-bold"><t t-esc="mb.list_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/></p>
+                                                                <button class="btn btn-primary select-component" t-att-data-id="mb.id">Select</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </t>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="step-cpu" role="tabpanel">
+                                            <div class="row" id="cpu-list">
+                                                <!-- CPUs will be loaded here via JS -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card bg-dark border-primary sticky-top" style="top: 100px;">
+                                    <div class="card-header bg-primary text-white">
+                                        <h4 class="mb-0">Build Summary</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul id="build-summary-list" class="list-unstyled">
+                                            <li><strong>Motherboard:</strong> <span id="summary-motherboard">Not Selected</span></li>
+                                            <li><strong>CPU:</strong> <span id="summary-cpu">Not Selected</span></li>
+                                            <!-- Add more summary items -->
+                                        </ul>
+                                        <hr class="border-secondary"/>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h5>Total:</h5>
+                                            <h5 id="total-price" class="text-danger">$0.00</h5>
+                                        </div>
+                                        <button id="add-to-cart-btn" class="btn btn-success btn-block mt-3" disabled="disabled">Add Build to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

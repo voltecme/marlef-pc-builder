@@ -1,0 +1,5 @@
+<odoo>
+    <menuitem id="menu_pc_builder_root" name="PC Builder" web_icon="marlef_pc_builder,static/description/icon.png"/>
+    <menuitem id="menu_pc_builds" name="Builds" parent="menu_pc_builder_root" action="action_pc_build" sequence="10"/>
+    <menuitem id="menu_pc_components" name="Components" parent="menu_pc_builder_root" action="product.product_template_action" sequence="20"/>
+</odoo>

@@ -1,0 +1,33 @@
+.s_pc_builder {
+    .component-card {
+        transition: transform 0.2s, border-color 0.2s;
+        cursor: pointer;
+        &:hover {
+            transform: translateY(-5px);
+            border-color: #007bff !important;
+        }
+        &.selected {
+            border-color: #28a745 !important;
+            box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+        }
+    }
+    .nav-pills .nav-link {
+        color: #adb5bd;
+        &.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+        &.disabled {
+            color: #495057;
+        }
+    }
+    #build-summary-list {
+        li {
+            padding: 8px 0;
+            border-bottom: 1px solid #2d2d2d;
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+}

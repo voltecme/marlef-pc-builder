@@ -1,0 +1,34 @@
+<odoo>
+    <data noupdate="1">
+        <!-- Sample Motherboards -->
+        <record id="product_mb_1" model="product.template">
+            <field name="name">ASUS ROG Strix Z790-E</field>
+            <field name="is_pc_component" eval="True"/>
+            <field name="component_type">motherboard</field>
+            <field name="socket_type">LGA1700</field>
+            <field name="ram_type">ddr5</field>
+            <field name="list_price">499.99</field>
+            <field name="website_published" eval="True"/>
+        </record>
+
+        <!-- Sample CPUs -->
+        <record id="product_cpu_1" model="product.template">
+            <field name="name">Intel Core i9-13900K</field>
+            <field name="is_pc_component" eval="True"/>
+            <field name="component_type">cpu</field>
+            <field name="socket_type">LGA1700</field>
+            <field name="list_price">589.99</field>
+            <field name="website_published" eval="True"/>
+        </record>
+
+        <!-- Sample RAM -->
+        <record id="product_ram_1" model="product.template">
+            <field name="name">Corsair Vengeance 32GB DDR5</field>
+            <field name="is_pc_component" eval="True"/>
+            <field name="component_type">ram</field>
+            <field name="ram_type">ddr5</field>
+            <field name="list_price">159.99</field>
+            <field name="website_published" eval="True"/>
+        </record>
+    </data>
+</odoo>

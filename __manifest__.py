@@ -22,6 +22,7 @@
         'views/pc_builder_templates.xml',
         'views/pc_builder_views.xml',
         'views/pc_builder_menus.xml',
+        'views/res_config_settings_views.xml',
         'data/pc_builder_data.xml',
     ],
     'assets': {
